@@ -1,0 +1,415 @@
+proc add {o {p 100}} {
+ return [expr $o + $p]
+ }
+
+proc tempcon {c} {
+set x [expr ($c * 9/5)+32 ]
+ return [format %f $x]   //it isused to represent nuber in different format
+ }
+ puts [tempcon 5]
+41
+
+
+9/08/23
+
+//maximum of two  numbers
+
+proc maxs {a b} {
+ if {$a > $b} {
+ return $a 
+} else {
+ return $b  
+} 
+}
+set a 23
+set b 24
+puts [maxs $a $b]
+//
+set val[maxs $a $b]
+puts "the max of $a,$b is $val"//
+
+
+puts [expr rand()]
+//it is used to take random number b/t 0 and 1 inclusive upto 16 decimAL
+puts [expr rand()*10]
+puts [expr rand()*1000]
+puts [expr int (rand())]
+puts [expr int (rand()*10)]
+
+10/08/2023
+
+
+button .b -text "Press me" -command {set num [expr round(rand()*1000)] }
+label .l -textvariable num
+pack .b .l -side top
+
+.b config -bg green
+.b config -fg red
+.b config -font 200
+
+.l config -bg white
+.l config -fg blue
+
+
+string :group of character enclosed under double quote
+
+set num "toolbar"
+puts [string length $num]  or we can use  puts"Length of string s1"
+puts [string index $num 5]
+puts [string range $num 2 7]
+
+
+
+21/08/2023
+
+if-else-if
+
+set x 1
+if { $x == 1} {
+puts "$x is true"
+} else {
+puts "$x is false"
+}
+
+
+set a 10
+if { $a ==20 } {
+puts "value of a=20"
+} elseif { $a == 30} {
+puts "value of a=30"
+} else {
+puts "none match"
+}
+
+
+
+
+
+proc calc { x y a b} {
+if {($x==0) && ($y ==0)} {
+return [expr $a + $b]
+} elseif {($x==0) && ($y ==1)} {
+return [expr $a - $b]
+} elseif {($x==1) && ($y ==0)} {
+return [expr $a * $b]
+} else  {
+return [expr $a / $b]
+}
+}
+puts  [calc 0 0 10 5]
+puts  [calc 0 1 10 5]
+puts  [calc 1 0 10 5]
+puts  [calc 1 1 10 5]
+
+
+
+button .a -text a
+label .al -textvariable al
+
+button .b -text b
+label .bl -textvariable bl
+
+button .x -text x
+label .xl -textvariable xl
+
+button .y -text y
+label .yl -textvariable yl
+
+button .out -text out
+lable  .outl -textvariable outl
+
+pack .out .outl -side top
+pack .a .al -side left
+pack .b .bl -side right
+pack .x .xl .y .yl -side bottom
+ 
+
+
+
+23/08/23
+
+switch case
+
+
+set x 20
+switch $x {
+10 "puts x=$x"
+20 "puts x=$x"
+40 "puts x=$x"
+default "puts none"
+}
+
+
+
+
+set grade A
+switch $grade {
+A {puts "excellent"}
+B {puts "well done"}
+C {puts "good"}
+D {puts "try again"}
+E {puts "invalid child"}
+}
+
+
+loop--- :
+while, for (conditional statement)
+forever (it is applied for each character of string)
+
+Ques: Write a script to sum natural number 1 to 10.
+
+set sum 0
+set i 0
+while {$i <=10} {
+set sum [expr $sum + $i]
+incr i
+}
+puts $sum
+
+
+q2.write tcl script to count only even no. from 0 to 100
+
+set even 0
+set i 1
+while {$i <=100} {
+if {($i % 2) == 0} {
+incr even
+incr i
+}
+}
+
+
+24/08/23
+
+set s 192.30.40.1
+set s1 [string range $s 4 5]
+set s2 [string range $s 7 8]
+set s3 [string replace $s 4 5 $s2]
+set s4 [string replace $s3 7 8 $s1]
+puts $s4
+ 
+for loop
+
+for {set i 0} {$i <10} {incr i} {
+puts $i}
+
+
+for {set a 10} {$a <20} {incr i} {
+puts "value of a :$a " }
+
+
+
+for {set i 0} {$i<5} {set i [expr {$i+0.5}]} {
+puts "I inside first loop: $i"
+}
+
+
+
+
+puts "NOT gate"
+puts "Input output"
+for {set a 0} {$a < 2} {incr a} {
+puts "$a  \t[expr !$a]"
+}
+
+puts "AND gate"
+puts "In1 In2 output"
+for {set a 0} {$a < 2} {incr a} {
+for {set b 0} {$b < 2} {incr b} {
+puts "$a \t$b  \t[expr $a & $b]"
+}
+}
+
+
+
+28/06/23
+
+for each: 
+It iterate the command for each member of the group.It creates internal variable dynamically and update the variable from loop 
+
+
+set gates {and or xor}
+foreach gates $gates {
+puts "gates name=$gates"
+
+
+set st {1 2 3 4 5}
+foreach st $st {
+set x [expr $st + $st]
+puts "sum =$x"
+}
+
+set m {1 2 3 4}
+set n 0
+foreach i $m {
+set n [expr $i +$n]
+}
+puts $n
+
+factorial
+
+method 1
+
+proc factorial {n} {
+  set product 1
+  for {set i 1} {$i <= $n} {incr i} {
+    set product [expr $product * $i]
+  }
+  return $product
+}
+puts [factorial 5]
+
+
+method 2
+
+
+proc fact{num} {
+if{$num==1} {
+return 1
+}else {
+return [expr $num*fact{dcr num}]
+}
+}
+set m {2 4 5}
+foreach i $m {
+fact ($i)
+puts "factorial =$m"
+}
+
+
+
+
+
+
+
+
+proc fact{num} {
+  if {$num == 1} {
+    return 1
+  } else {
+    return num * fact{num - 1}
+  }
+}
+
+set m {2 4 5}
+foreach i $m {
+  fact $i
+  puts "The factorial of $i is $m"
+}
+
+
+
+
+
+
+
+30/08/23
+
+Data structure in tcl
+list
+group
+string
+
+
+1.list
+fundamental datatype
+an ordered collection
+it can include different type of item in same list 
+
+To declare list
+set listname{item1 item2 item3 -----}
+set [list item1 item2 .........]
+set listname[split "  "split_character]
+
+every item in list is seperated by whitespace
+we can declare a list inside a list
+
+ list based command
+command begin with l
+eg:-llength,lindex,lrange
+
+(bin) 2 % set gate {not nand and xor}
+not nand and xor
+(bin) 3 % puts $gate
+not nand and xor
+(bin) 4 % set gate {not {and nand}or}
+not {and nand}or
+(bin) 5 % puts gate
+gate
+(bin) 6 % puts $gate
+not {and nand}or
+(bin) 7 % puts [list in out]
+in out
+(bin) 8 % set gate {not and xor}
+not and xor
+(bin) 9 % puts[llength $gate]
+invalid command name "puts3"
+(bin) 10 % puts [lindex $gate 1]
+and
+(bin) 11 % puts [lappend $gate {nand nor}]
+{nand nor}
+(bin) 12 % set gate1 [lappend $gate {nand nor}]
+{nand nor} {nand nor}
+(bin) 13 % puts %gate1
+%gate1
+(bin) 14 % puts $gate1
+{nand nor} {nand nor}
+(bin) 15 % puts [lrange $gate 1 2]
+and xor
+
+
+(bin) 17 % set gate {not and xor}
+not and xor
+(bin) 18 % set gate1 [linsert $gate 1 nor]
+not nor and xor
+(bin) 20 % set gate2 [linsert $gate 3 {not but}]
+not and xor {not but}
+(bin) 21 % puts [llength $gate2]
+4
+(bin) 24 % puts [lreplace $gate2 0 1 nand xnor]
+nand xnor xor {not but}
+
+
+
+4/09/23
+
+(bin) 4 % set lan(0) java
+java
+(bin) 5 % set lan(1) hdl
+hdl
+(bin) 6 % set lan(2) c
+c
+(bin) 7 % set lan(3) py
+py
+(bin) 8 % puts [array get language]
+0 java hdl c 1 py 2 hdl java py 3 c
+(bin) 9 % array set langu {0 py 1 c 2 java}
+(bin) 10 % puts $langu(2)
+java
+(bin) 11 % array set langu {0 c 1 c++ 2 java 3 py 4 hdl}
+(bin) 12 % puts [array exist langu]
+1
+(bin) 13 % puts [array size langu]
+5
+(bin) 14 % puts [array name langu]
+4 0 1 2 3
+(bin) 15 % parray langu
+langu(0) = c
+langu(1) = c++
+langu(2) = java
+langu(3) = py
+langu(4) = hdl
+
+for {set i 0} { $i < 8} {incr i} {
+set base($i) $i
+puts "base($i) = $base($i)"
+}
+
+
+for {set i 0} {$i<3} {incr i} {
+for {set j 0} {$j < 3} {incr j} {
+set base {$i,$j}$i
+puts "base($i,$j)=$base($i,$j)
+}
+}
+
